@@ -1,0 +1,82 @@
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"
+         id="WebApp_ID" version="4.0">
+
+<!--
+  Plik web.xml jest deskryptorem każdej aplikacji webowej w Javie.
+  W nim jest konfiguracja wszystkich serveltów (adresów na słucha aplikacja),
+  filtrów, lisenerów, stron błędów i innych komponentów webowych.
+
+  Plik web.xml musi być umieszczony w katalogu WEB-INF, pliku war 
+  lub rozpakowanego katalogu aplikiacji webowej. 
+ -->
+  <display-name>TS</display-name>
+
+
+  <!-- Servlety to klasy przetwarzające żądania do serwera, konufigurując servlet podajemy jego nazwę i klasę  -->
+  <servlet>
+    <servlet-name>simple</servlet-name>
+    <servlet-class>edu.technischools.java.web.SimpleServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>TimeServlet</servlet-name>
+    <servlet-class>edu.technischools.java.web.TimeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TimeServlet</servlet-name>
+    <url-pattern>/time</url-pattern>
+  </servlet-mapping>
+
+
+  <!-- 
+    Tag servlet-mapping jest używany do koniguracji, jakie servlety będę obsługiwać jakie żądania.
+    tag url-pattern może zawierać *, pozwlając powiązać jeden servlet do kilku adresów URL 
+  
+   -->
+  <servlet-mapping>
+    <servlet-name>simple</servlet-name>
+    <url-pattern>/simple</url-pattern>
+  </servlet-mapping>
+  <!-- Alternatywnie, można użyć do tego adnotacji @WebServlet na klasie, która rozszerza klasę javax.servlet.http.HttpServlet -->
+
+  <!--
+    Filtry, to klasy, które przetwarzają i ew modyfikują żądania i dopowiedzi (np. nagłówki), nie odpowiadają za generowanie odpowiedzi.
+    Używa się ich np. do autentykacji, logowania, kompresji, enkrypcji itp.
+
+    Analogicznie jak servlety, filtry definiuje się, podając ich nazwę i klasę implementującą iterfejs javax.servlet.Filter
+  -->
+  <filter>
+    <filter-name>sample-filter</filter-name>
+    <filter-class>edu.technischools.java.web.SimpleFilter</filter-class>
+  </filter>
+  <filter>
+    <filter-name>MyTokenFilter</filter-name>
+    <filter-class>edu.technischools.java.web.MyTokenFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>MyTokenFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!-- 
+    Analogicznie jak przy mapowniu servletów, można określić URL jakie będzie przetwarzać filtr, 
+   -->
+  <filter-mapping>
+    <filter-name>sample-filter</filter-name>
+    <url-pattern>/*</url-pattern>
+    <!-- <servlet-name>advanced</servlet-name>  --> <!-- Alternatywnie można zmapować filtr pod określony servlet -->
+  </filter-mapping>
+  
+  <!-- Definiując strony błędów, określamy jaki błąd chcemy obsłużyć i stronę ktróra będzie go obsługiwać -->
+  <!---->
+  <error-page>
+    <error-code>404</error-code>
+    <!-- <exception-type></exception-type> --><!-- Zamiast kodu błędu, można podać typ wyjątku który chcemy obsłużyć  -->
+    <location>/static/404.html</location>
+  </error-page>
+
+ <welcome-file-list>
+    <welcome-file>static/index.html</welcome-file>
+ </welcome-file-list>
+
+</web-app>
