@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+  <title>Calculator</title>
+</head>
+<body>
+<form method="post" action="/calculate" enctype="application/x-www-form-urlencoded">
+  <label>
+    A
+    <input name="operandA" type="number">
+  </label>
+  <label>
+  Operation
+    <select>
+      <option value="ADD">+</option>
+      <option value="SUB">-</option>
+      <option value="MUL">*</option>
+      <option value="DIV">/</option>
+    </select>
+  </label>
+  <label>
+    B
+    <input name="operandB" type="number">
+  </label>
+
+  <button type="submit">Calulate</button>
+</form>
+</body>
+</html>
