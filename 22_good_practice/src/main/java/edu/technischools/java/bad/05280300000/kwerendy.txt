@@ -1,0 +1,13 @@
+Zapytanie 1:SELECT id,nazwa FROM `rodzajobiektu` 
+
+Zapytanie 2:SELECT id,nazwa FROM `rodzajobiektu` WHERE id=2
+
+Zapytanie 3:SELECT id,nazwa FROM `obiektsportowy`
+
+Zapytanie 4:Select o.id, o.nazwa, o.adres , o.godzinyOtwarcia , o.obrazek ,rodzajObiektu.nazwa as "obiekt" From obiektsportowy o Left Join rodzajObiektu On o.rodzajObiektu=rodzajObiektu.id Where o.rodzajObiektu=3 
+
+Zapytanie 5:INSERT INTO `obiektsportowy` (`id`, `nazwa`, `adres`, `rodzajObiektu`, `godzinyOtwarcia`, `obrazek`) VALUES ('7', 'Vizja Park', 'ul. Okopowa 59,01-043 Warszawa', '4', '7:00-22:30', 'default.jpeg');
+
+Zapytanie 6:SELECT o.nazwa,r.id,r.czasRozpoczecia,r.czasZakonczenia,r.obiektSportowy,r.uzytkownik,u.email FROM `obiektsportowy` o Left Join rezerwacja r on r.obiektSportowy=o.id Left Join uzytkownik u On r.uzytkownik=u.id 
+
+Zapytanie 7:ALTER table rezerwacja ADD czyPotwierdzona TinyInt(1) Default 0; Update rezerwacja Set czyPotwierdzona=1
